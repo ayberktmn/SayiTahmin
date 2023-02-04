@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "595495160401",
+    "project_id": "mobilesatis-19822",
+    "storage_bucket": "mobilesatis-19822.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595495160401:android:eea17ee3404a1507f84670",
+        "android_client_info": {
+          "package_name": "com.ayberk.mobilsatis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595495160401-nfttm68emq249pm36lk105qig03q4mu7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzZeqv5DJpgDp_e2hZl1kJkAxkfeTpi3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595495160401-nfttm68emq249pm36lk105qig03q4mu7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
