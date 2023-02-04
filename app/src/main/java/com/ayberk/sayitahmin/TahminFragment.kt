@@ -2,6 +2,7 @@ package com.ayberk.sayitahmin
 
 import android.os.Bundle
 import android.system.Os.remove
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,12 +42,19 @@ class TahminFragment : Fragment() {
 
         binding.buttonTahmin.setOnClickListener {
 
+
             sayac = sayac - 1
 
-            val tahmin = binding.editTextGirdi.text.toString().toInt()
+            val tahmin = binding.editTextGirdi.text.toString().trim()
 
 
-            if(tahmin == rasgeleSayi){
+            if(TextUtils.isEmpty(tahmin.toString())){
+                Toast.makeText(requireContext(),"Tahmin Giriniz",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+
+            }
+
+            if(tahmin.toInt() == rasgeleSayi){
 
                 val action = TahminFragmentDirections.actionTahminFragment2ToSonucFragment(true)
                 findNavController().navigate(action)
@@ -54,14 +62,14 @@ class TahminFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            else if (tahmin > rasgeleSayi){
+            else if (tahmin.toInt() > rasgeleSayi){
 
                 binding.textViewYardim.text = "Azalt"
                 binding.textViewSayac.text = "Kalan Hak : $sayac"
 
             }
 
-           else if (tahmin < rasgeleSayi){
+           else if (tahmin.toInt() < rasgeleSayi){
 
                 binding.textViewYardim.text = "Arttır"
                 binding.textViewSayac.text = "Kalan Hak : $sayac"
@@ -77,7 +85,7 @@ class TahminFragment : Fragment() {
            }
             binding.editTextGirdi.setText("")
 
-            }
+        }
     }
 
     var sayac = 5
