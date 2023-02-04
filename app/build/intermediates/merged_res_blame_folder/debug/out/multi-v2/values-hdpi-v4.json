@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ayberk.sayitahmin.app-mergeDebugResources-43:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Ayberk\\.gradle\\caches\\transforms-3\\97b7ca847b23aa6e416ed6cc2f1855d3\\transformed\\appcompat-1.6.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

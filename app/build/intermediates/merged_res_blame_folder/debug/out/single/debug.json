@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.ayberk.sayitahmin.app-merged_res-45:/layout_fragment_tahmin.xml.flat",
+        "source": "com.ayberk.sayitahmin.app-main-47:/layout/fragment_tahmin.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\layout_fragment_tahmin.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\fragment_tahmin.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\layout_fragment_giris.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\fragment_giris.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\drawable_ic_baseline_casino_24.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\drawable\\ic_baseline_casino_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\drawable_uzgun_resim.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\drawable\\uzgun_resim.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\drawable_mutlu_resim.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\drawable\\mutlu_resim.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\layout_fragment_sonuc.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\fragment_sonuc.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-merged_res-45:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    }
+]

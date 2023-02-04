@@ -1,0 +1,1811 @@
+Index: app/src/main/java/com/ayberk/sayitahmin/TahminFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ayberk/sayitahmin/TahminFragment.kt b/app/src/main/java/com/ayberk/sayitahmin/TahminFragment.kt
+new file mode 100644
+--- /dev/null	(date 1675506649134)
++++ b/app/src/main/java/com/ayberk/sayitahmin/TahminFragment.kt	(date 1675506649134)
+@@ -0,0 +1,98 @@
++package com.ayberk.sayitahmin
++
++import android.os.Bundle
++import android.system.Os.remove
++import android.util.Log
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.Toast
++import androidx.core.os.bundleOf
++import androidx.navigation.fragment.findNavController
++import com.ayberk.sayitahmin.databinding.FragmentGirisBinding
++import com.ayberk.sayitahmin.databinding.FragmentTahminBinding
++import com.google.android.material.snackbar.Snackbar
++import kotlin.random.Random
++
++private var _binding : FragmentTahminBinding? = null
++private val binding get() = _binding!!
++
++private var rasgeleSayi = 0
++
++private var sayac = 5
++
++
++class TahminFragment : Fragment() {
++
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++
++        rasgeleSayi = Random.nextInt(101)
++
++
++      var sayac = 5
++    }
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++
++
++        binding.buttonTahmin.setOnClickListener {
++
++            sayac = sayac - 1
++
++            val tahmin = binding.editTextGirdi.text.toString().toInt()
++
++
++            if(tahmin == rasgeleSayi){
++
++                val action = TahminFragmentDirections.actionTahminFragment2ToSonucFragment(true)
++                findNavController().navigate(action)
++
++                return@setOnClickListener
++            }
++
++            else if (tahmin > rasgeleSayi){
++
++                binding.textViewYardim.text = "Azalt"
++                binding.textViewSayac.text = "Kalan Hak : $sayac"
++
++            }
++
++           else if (tahmin < rasgeleSayi){
++
++                binding.textViewYardim.text = "Arttır"
++                binding.textViewSayac.text = "Kalan Hak : $sayac"
++
++            }
++
++           if (sayac == 0){
++
++                val action = TahminFragmentDirections.actionTahminFragment2ToSonucFragment(false)
++                findNavController().navigate(action)
++
++
++           }
++            binding.editTextGirdi.setText("")
++
++            }
++    }
++
++    var sayac = 5
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        _binding = FragmentTahminBinding.inflate(inflater,container,false)
++        val view = binding.root
++        return view
++    }
++
++    override fun onDestroy() {
++        super.onDestroy()
++    }
++
++}
+\ No newline at end of file
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/proguard-rules.pro b/app/proguard-rules.pro
+new file mode 100644
+--- /dev/null	(date 1675247031531)
++++ b/app/proguard-rules.pro	(date 1675247031531)
+@@ -0,0 +1,21 @@
++# Add project specific ProGuard rules here.
++# You can control the set of applied configuration files using the
++# proguardFiles setting in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
++
++# Uncomment this to preserve the line number information for
++# debugging stack traces.
++#-keepattributes SourceFile,LineNumberTable
++
++# If you keep the line number information, uncomment this to
++# hide the original source file name.
++#-renamesourcefileattribute SourceFile
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_tahmin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_tahmin.xml b/app/src/main/res/layout/fragment_tahmin.xml
+new file mode 100644
+--- /dev/null	(date 1675502645599)
++++ b/app/src/main/res/layout/fragment_tahmin.xml	(date 1675502645599)
+@@ -0,0 +1,68 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".TahminFragment">
++
++
++    <TextView
++        android:id="@+id/textViewSayac"
++        android:layout_width="173dp"
++        android:layout_height="0dp"
++        android:layout_marginTop="44dp"
++        android:layout_marginEnd="116dp"
++        android:layout_marginBottom="38dp"
++        android:text="Kalan Hak : 5"
++        android:textAlignment="center"
++        android:textColor="#0B0101"
++        android:textSize="22sp"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toTopOf="@+id/textViewYardim"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.975"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <TextView
++        android:id="@+id/textViewYardim"
++        android:layout_width="113dp"
++        android:layout_height="0dp"
++        android:layout_marginBottom="513dp"
++        android:gravity="center"
++        android:textColor="#05A30B"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textViewSayac" />
++
++    <EditText
++        android:id="@+id/editTextGirdi"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="128dp"
++        android:ems="10"
++        android:gravity="center"
++        android:hint="Sayı Giriniz"
++        android:inputType="textPersonName"
++        android:minHeight="48dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.5"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textViewYardim"
++        app:layout_constraintVertical_bias="0.041" />
++
++    <Button
++        android:id="@+id/buttonTahmin"
++        android:layout_width="144dp"
++        android:layout_height="72dp"
++        android:text="Tahmin Et"
++        android:textSize="20sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/editTextGirdi" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/ayberk/sayitahmin/SonucFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ayberk/sayitahmin/SonucFragment.kt b/app/src/main/java/com/ayberk/sayitahmin/SonucFragment.kt
+new file mode 100644
+--- /dev/null	(date 1675340677905)
++++ b/app/src/main/java/com/ayberk/sayitahmin/SonucFragment.kt	(date 1675340677905)
+@@ -0,0 +1,64 @@
++package com.ayberk.sayitahmin
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import androidx.core.os.bundleOf
++import androidx.navigation.fragment.findNavController
++import com.ayberk.sayitahmin.databinding.FragmentGirisBinding
++import com.ayberk.sayitahmin.databinding.FragmentSonucBinding
++
++private var _binding : FragmentSonucBinding? = null
++private val binding get() = _binding!!
++
++class SonucFragment : Fragment() {
++
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++
++    }
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++
++        arguments?.let {
++            val sonuc = SonucFragmentArgs.fromBundle(it).sonuc
++
++            if (sonuc) {
++
++                binding.textViewSonuc.text = "KAZANDINIZ"
++                binding.imageViewsonuc.setImageResource(R.drawable.mutlu_resim)
++
++            } else {
++                binding.textViewSonuc.text = "KAYBETTİNİZ"
++                binding.imageViewsonuc.setImageResource(R.drawable.uzgun_resim)
++
++
++            }
++
++
++        }
++
++
++        binding.buttonTekrar.setOnClickListener {
++
++            val action = SonucFragmentDirections.actionSonucFragmentToGirisFragment()
++            findNavController().navigate(action)
++
++        }
++    }
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        // Inflate the layout for this fragment
++        _binding = FragmentSonucBinding.inflate(inflater,container,false)
++        val view = binding.root
++        return view
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_sonuc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_sonuc.xml b/app/src/main/res/layout/fragment_sonuc.xml
+new file mode 100644
+--- /dev/null	(date 1675257536659)
++++ b/app/src/main/res/layout/fragment_sonuc.xml	(date 1675257536659)
+@@ -0,0 +1,47 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".SonucFragment">
++
++
++    <ImageView
++        android:id="@+id/imageViewsonuc"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="66dp"
++        android:layout_marginBottom="268dp"
++        android:src="@drawable/uzgun_resim"
++        app:layout_constraintBottom_toTopOf="@+id/buttonTekrar"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.496"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <TextView
++        android:id="@+id/textViewSonuc"
++        android:layout_width="167dp"
++        android:layout_height="45dp"
++        android:layout_marginTop="96dp"
++        android:layout_marginEnd="64dp"
++        android:text="KAYBETTİNİZ"
++        android:textSize="26sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.679"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/imageViewsonuc" />
++
++    <Button
++        android:id="@+id/buttonTekrar"
++        android:layout_width="136dp"
++        android:layout_height="64dp"
++        android:layout_marginBottom="171dp"
++        android:text="TEKRAR OYNA"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.5"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/imageViewsonuc" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/google-services.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/google-services.json b/app/google-services.json
+new file mode 100644
+--- /dev/null	(date 1674730541143)
++++ b/app/google-services.json	(date 1674730541143)
+@@ -0,0 +1,39 @@
++{
++  "project_info": {
++    "project_number": "595495160401",
++    "project_id": "mobilesatis-19822",
++    "storage_bucket": "mobilesatis-19822.appspot.com"
++  },
++  "client": [
++    {
++      "client_info": {
++        "mobilesdk_app_id": "1:595495160401:android:eea17ee3404a1507f84670",
++        "android_client_info": {
++          "package_name": "com.ayberk.mobilsatis"
++        }
++      },
++      "oauth_client": [
++        {
++          "client_id": "595495160401-nfttm68emq249pm36lk105qig03q4mu7.apps.googleusercontent.com",
++          "client_type": 3
++        }
++      ],
++      "api_key": [
++        {
++          "current_key": "AIzaSyCzZeqv5DJpgDp_e2hZl1kJkAxkfeTpi3Y"
++        }
++      ],
++      "services": {
++        "appinvite_service": {
++          "other_platform_oauth_client": [
++            {
++              "client_id": "595495160401-nfttm68emq249pm36lk105qig03q4mu7.apps.googleusercontent.com",
++              "client_type": 3
++            }
++          ]
++        }
++      }
++    }
++  ],
++  "configuration_version": "1"
++}
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+new file mode 100644
+--- /dev/null	(date 1675255879620)
++++ b/app/build.gradle	(date 1675255879620)
+@@ -0,0 +1,57 @@
++plugins {
++    id 'com.android.application'
++    id 'org.jetbrains.kotlin.android'
++    id("androidx.navigation.safeargs")
++
++}
++
++android {
++    namespace 'com.ayberk.sayitahmin'
++    compileSdk 33
++
++    defaultConfig {
++        applicationId "com.ayberk.sayitahmin"
++        minSdk 24
++        targetSdk 33
++        versionCode 1
++        versionName "1.0"
++
++        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
++    }
++
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
++        }
++    }
++    compileOptions {
++        sourceCompatibility JavaVersion.VERSION_1_8
++        targetCompatibility JavaVersion.VERSION_1_8
++    }
++    kotlinOptions {
++        jvmTarget = '1.8'
++    }
++    buildFeatures{
++        viewBinding = true
++    }
++}
++
++dependencies {
++
++
++    implementation 'androidx.core:core-ktx:1.7.0'
++    implementation 'androidx.appcompat:appcompat:1.6.0'
++    implementation 'com.google.android.material:material:1.8.0'
++    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
++    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
++    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
++    testImplementation 'junit:junit:4.13.2'
++    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
++    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
++    implementation("androidx.navigation:navigation-ui-ktx:")
++    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
++    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
++    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
++
++}
+\ No newline at end of file
+Index: .idea/render.experimental.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/render.experimental.xml b/.idea/render.experimental.xml
+new file mode 100644
+--- /dev/null	(date 1675247408072)
++++ b/.idea/render.experimental.xml	(date 1675247408072)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RenderSettings">
++    <option name="showDecorations" value="true" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/.gitignore b/app/.gitignore
+new file mode 100644
+--- /dev/null	(date 1675247031450)
++++ b/app/.gitignore	(date 1675247031450)
+@@ -0,0 +1,1 @@
++/build
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+new file mode 100644
+--- /dev/null	(date 1675247032459)
++++ b/app/src/main/AndroidManifest.xml	(date 1675247032459)
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <application
++        android:allowBackup="true"
++        android:dataExtractionRules="@xml/data_extraction_rules"
++        android:fullBackupContent="@xml/backup_rules"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:roundIcon="@mipmap/ic_launcher_round"
++        android:supportsRtl="true"
++        android:theme="@style/Theme.SayiTahmin"
++        tools:targetApi="31">
++        <activity
++            android:name=".MainActivity"
++            android:exported="true">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++
++            <meta-data
++                android:name="android.app.lib_name"
++                android:value="" />
++        </activity>
++    </application>
++
++</manifest>
+\ No newline at end of file
+Index: app/src/main/res/drawable/mutlu_resim.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/mutlu_resim.xml b/app/src/main/res/drawable/mutlu_resim.xml
+new file mode 100644
+--- /dev/null	(date 1675247775995)
++++ b/app/src/main/res/drawable/mutlu_resim.xml	(date 1675247775995)
+@@ -0,0 +1,9 @@
++<vector android:height="256dp" android:tint="#000000"
++    android:viewportHeight="24" android:viewportWidth="24"
++    android:width="256dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M15.5,9.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0"/>
++    <path android:fillColor="@android:color/white" android:pathData="M8.5,9.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0"/>
++    <path android:fillColor="@android:color/white" android:pathData="M15.5,9.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0"/>
++    <path android:fillColor="@android:color/white" android:pathData="M8.5,9.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0"/>
++    <path android:fillColor="@android:color/white" android:pathData="M11.99,2C6.47,2 2,6.48 2,12s4.47,10 9.99,10C17.52,22 22,17.52 22,12S17.52,2 11.99,2zM12,20c-4.42,0 -8,-3.58 -8,-8s3.58,-8 8,-8 8,3.58 8,8 -3.58,8 -8,8zM12,17.5c2.33,0 4.32,-1.45 5.12,-3.5h-1.67c-0.69,1.19 -1.97,2 -3.45,2s-2.75,-0.81 -3.45,-2L6.88,14c0.8,2.05 2.79,3.5 5.12,3.5z"/>
++</vector>
+Index: app/src/androidTest/java/com/ayberk/sayitahmin/ExampleInstrumentedTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/com/ayberk/sayitahmin/ExampleInstrumentedTest.kt b/app/src/androidTest/java/com/ayberk/sayitahmin/ExampleInstrumentedTest.kt
+new file mode 100644
+--- /dev/null	(date 1675247031981)
++++ b/app/src/androidTest/java/com/ayberk/sayitahmin/ExampleInstrumentedTest.kt	(date 1675247031981)
+@@ -0,0 +1,24 @@
++package com.ayberk.sayitahmin
++
++import androidx.test.platform.app.InstrumentationRegistry
++import androidx.test.ext.junit.runners.AndroidJUnit4
++
++import org.junit.Test
++import org.junit.runner.RunWith
++
++import org.junit.Assert.*
++
++/**
++ * Instrumented test, which will execute on an Android device.
++ *
++ * See [testing documentation](http://d.android.com/tools/testing).
++ */
++@RunWith(AndroidJUnit4::class)
++class ExampleInstrumentedTest {
++    @Test
++    fun useAppContext() {
++        // Context of the app under test.
++        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
++        assertEquals("com.ayberk.sayitahmin", appContext.packageName)
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_baseline_casino_24.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_baseline_casino_24.xml b/app/src/main/res/drawable/ic_baseline_casino_24.xml
+new file mode 100644
+--- /dev/null	(date 1675247726195)
++++ b/app/src/main/res/drawable/ic_baseline_casino_24.xml	(date 1675247726195)
+@@ -0,0 +1,5 @@
++<vector android:height="256dp" android:tint="#000000"
++    android:viewportHeight="24" android:viewportWidth="24"
++    android:width="256dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M19,3L5,3c-1.1,0 -2,0.9 -2,2v14c0,1.1 0.9,2 2,2h14c1.1,0 2,-0.9 2,-2L21,5c0,-1.1 -0.9,-2 -2,-2zM7.5,18c-0.83,0 -1.5,-0.67 -1.5,-1.5S6.67,15 7.5,15s1.5,0.67 1.5,1.5S8.33,18 7.5,18zM7.5,9C6.67,9 6,8.33 6,7.5S6.67,6 7.5,6 9,6.67 9,7.5 8.33,9 7.5,9zM12,13.5c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM16.5,18c-0.83,0 -1.5,-0.67 -1.5,-1.5s0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5 -0.67,1.5 -1.5,1.5zM16.5,9c-0.83,0 -1.5,-0.67 -1.5,-1.5S15.67,6 16.5,6s1.5,0.67 1.5,1.5S17.33,9 16.5,9z"/>
++</vector>
+Index: app/src/main/res/drawable/uzgun_resim.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/uzgun_resim.xml b/app/src/main/res/drawable/uzgun_resim.xml
+new file mode 100644
+--- /dev/null	(date 1675247746849)
++++ b/app/src/main/res/drawable/uzgun_resim.xml	(date 1675247746849)
+@@ -0,0 +1,7 @@
++<vector android:height="256dp" android:tint="#000000"
++    android:viewportHeight="24" android:viewportWidth="24"
++    android:width="256dp" xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M15.5,9.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0"/>
++    <path android:fillColor="@android:color/white" android:pathData="M8.5,9.5m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0"/>
++    <path android:fillColor="@android:color/white" android:pathData="M11.99,2C6.47,2 2,6.48 2,12s4.47,10 9.99,10C17.52,22 22,17.52 22,12S17.52,2 11.99,2zM12,20c-4.42,0 -8,-3.58 -8,-8s3.58,-8 8,-8 8,3.58 8,8 -3.58,8 -8,8zM12,14c-2.33,0 -4.32,1.45 -5.12,3.5h1.67c0.69,-1.19 1.97,-2 3.45,-2s2.75,0.81 3.45,2h1.67c-0.8,-2.05 -2.79,-3.5 -5.12,-3.5z"/>
++</vector>
+Index: app/src/test/java/com/ayberk/sayitahmin/ExampleUnitTest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/test/java/com/ayberk/sayitahmin/ExampleUnitTest.kt b/app/src/test/java/com/ayberk/sayitahmin/ExampleUnitTest.kt
+new file mode 100644
+--- /dev/null	(date 1675247032004)
++++ b/app/src/test/java/com/ayberk/sayitahmin/ExampleUnitTest.kt	(date 1675247032004)
+@@ -0,0 +1,17 @@
++package com.ayberk.sayitahmin
++
++import org.junit.Test
++
++import org.junit.Assert.*
++
++/**
++ * Example local unit test, which will execute on the development machine (host).
++ *
++ * See [testing documentation](http://d.android.com/tools/testing).
++ */
++class ExampleUnitTest {
++    @Test
++    fun addition_isCorrect() {
++        assertEquals(4, 2 + 2)
++    }
++}
+\ No newline at end of file
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle.properties b/gradle.properties
+new file mode 100644
+--- /dev/null	(date 1675247031340)
++++ b/gradle.properties	(date 1675247031340)
+@@ -0,0 +1,23 @@
++# Project-wide Gradle settings.
++# IDE (e.g. Android Studio) users:
++# Gradle settings configured through the IDE *will override*
++# any settings specified in this file.
++# For more details on how to configure your build environment visit
++# http://www.gradle.org/docs/current/userguide/build_environment.html
++# Specifies the JVM arguments used for the daemon process.
++# The setting is particularly useful for tweaking memory settings.
++org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
++# When configured, Gradle will run in incubating parallel mode.
++# This option should only be used with decoupled projects. More details, visit
++# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
++# org.gradle.parallel=true
++# AndroidX package structure to make it clearer which packages are bundled with the
++# Android operating system, and which are packaged with your app's APK
++# https://developer.android.com/topic/libraries/support-library/androidx-rn
++android.useAndroidX=true
++# Kotlin code style for this project: "official" or "obsolete":
++kotlin.code.style=official
++# Enables namespacing of each library's R class so that its R class includes only the
++# resources declared in the library itself and none from the library's dependencies,
++# thereby reducing the size of the R class for that library
++android.nonTransitiveRClass=true
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_giris.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_giris.xml b/app/src/main/res/layout/fragment_giris.xml
+new file mode 100644
+--- /dev/null	(date 1675257536671)
++++ b/app/src/main/res/layout/fragment_giris.xml	(date 1675257536671)
+@@ -0,0 +1,48 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".GirisFragment">
++
++    <TextView
++        android:id="@+id/textView"
++        android:layout_width="235dp"
++        android:layout_height="56dp"
++        android:text="SAYI TAHMİN ET"
++        android:textAlignment="center"
++        android:textSize="24sp"
++        android:textStyle="bold"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.112" />
++
++    <ImageView
++        android:id="@+id/imageView"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="95dp"
++        android:layout_marginBottom="340dp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.496"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView"
++        app:srcCompat="@drawable/ic_baseline_casino_24" />
++
++    <Button
++        android:id="@+id/buttonBasla"
++        android:layout_width="200dp"
++        android:layout_height="80dp"
++        android:layout_marginTop="120dp"
++        android:backgroundTint="#054C85"
++        android:text="Başla"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.497"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/imageView" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.gradle b/settings.gradle
+new file mode 100644
+--- /dev/null	(date 1675247031749)
++++ b/settings.gradle	(date 1675247031749)
+@@ -0,0 +1,16 @@
++pluginManagement {
++    repositories {
++        gradlePluginPortal()
++        google()
++        mavenCentral()
++    }
++}
++dependencyResolutionManagement {
++    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
++    repositories {
++        google()
++        mavenCentral()
++    }
++}
++rootProject.name = "SayiTahmin"
++include ':app'
+Index: app/src/main/java/com/ayberk/sayitahmin/GirisFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ayberk/sayitahmin/GirisFragment.kt b/app/src/main/java/com/ayberk/sayitahmin/GirisFragment.kt
+new file mode 100644
+--- /dev/null	(date 1675256314406)
++++ b/app/src/main/java/com/ayberk/sayitahmin/GirisFragment.kt	(date 1675256314406)
+@@ -0,0 +1,52 @@
++package com.ayberk.sayitahmin
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.widget.Toast
++import androidx.navigation.fragment.findNavController
++
++import com.ayberk.sayitahmin.databinding.FragmentGirisBinding
++import com.google.android.material.snackbar.Snackbar
++
++
++private var _binding : FragmentGirisBinding? = null
++private val binding get() = _binding!!
++
++class GirisFragment : Fragment() {
++
++
++
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++
++    }
++
++    override fun onCreateView(
++        inflater: LayoutInflater, container: ViewGroup?,
++        savedInstanceState: Bundle?
++    ): View? {
++        _binding = FragmentGirisBinding.inflate(inflater,container,false)
++        val view = binding.root
++        return view
++
++    }
++
++    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
++        super.onViewCreated(view, savedInstanceState)
++
++        binding.buttonBasla.setOnClickListener {
++
++            val action = GirisFragmentDirections.actionGirisFragmentToTahminFragment2()
++            findNavController().navigate(action)
++            Snackbar.make(it,"Oyun Başladı",Snackbar.LENGTH_SHORT).show()
++
++        }
++    }
++
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/xml/data_extraction_rules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/xml/data_extraction_rules.xml b/app/src/main/res/xml/data_extraction_rules.xml
+new file mode 100644
+--- /dev/null	(date 1675247032351)
++++ b/app/src/main/res/xml/data_extraction_rules.xml	(date 1675247032351)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?><!--
++   Sample data extraction rules file; uncomment and customize as necessary.
++   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
++   for details.
++-->
++<data-extraction-rules>
++    <cloud-backup>
++        <!-- TODO: Use <include> and <exclude> to control what is backed up.
++        <include .../>
++        <exclude .../>
++        -->
++    </cloud-backup>
++    <!--
++    <device-transfer>
++        <include .../>
++        <exclude .../>
++    </device-transfer>
++    -->
++</data-extraction-rules>
+\ No newline at end of file
+Index: app/src/main/res/navigation/nav_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/nav_graph.xml b/app/src/main/res/navigation/nav_graph.xml
+new file mode 100644
+--- /dev/null	(date 1675340792401)
++++ b/app/src/main/res/navigation/nav_graph.xml	(date 1675340792401)
+@@ -0,0 +1,37 @@
++<?xml version="1.0" encoding="utf-8"?>
++<navigation xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/nav_graph"
++    app:startDestination="@id/girisFragment">
++    <fragment
++        android:id="@+id/tahminFragment2"
++        android:name="com.ayberk.sayitahmin.TahminFragment"
++        android:label="fragment_tahmin"
++        tools:layout="@layout/fragment_tahmin" >
++        <action
++            android:id="@+id/action_tahminFragment2_to_sonucFragment"
++            app:destination="@id/sonucFragment" />
++    </fragment>
++    <fragment
++        android:id="@+id/sonucFragment"
++        android:name="com.ayberk.sayitahmin.SonucFragment"
++        android:label="fragment_sonuc"
++        tools:layout="@layout/fragment_sonuc" >
++        <action
++            android:id="@+id/action_sonucFragment_to_girisFragment"
++            app:destination="@id/girisFragment" />
++        <argument
++            android:name="sonuc"
++            app:argType="boolean" />
++    </fragment>
++    <fragment
++        android:id="@+id/girisFragment"
++        android:name="com.ayberk.sayitahmin.GirisFragment"
++        android:label="fragment_giris"
++        tools:layout="@layout/fragment_giris" >
++        <action
++            android:id="@+id/action_girisFragment_to_tahminFragment2"
++            app:destination="@id/tahminFragment2" />
++    </fragment>
++</navigation>
+\ No newline at end of file
+Index: app/src/main/java/com/ayberk/sayitahmin/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ayberk/sayitahmin/MainActivity.kt b/app/src/main/java/com/ayberk/sayitahmin/MainActivity.kt
+new file mode 100644
+--- /dev/null	(date 1675254028768)
++++ b/app/src/main/java/com/ayberk/sayitahmin/MainActivity.kt	(date 1675254028768)
+@@ -0,0 +1,19 @@
++package com.ayberk.sayitahmin
++
++import android.content.Intent
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import com.ayberk.sayitahmin.databinding.ActivityMainBinding
++
++private lateinit var binding: ActivityMainBinding
++
++class MainActivity : AppCompatActivity() {
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        binding = ActivityMainBinding.inflate(layoutInflater)
++        setContentView(binding.root)
++
++    }
++
++
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+new file mode 100644
+--- /dev/null	(date 1675252920180)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1675252920180)
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".MainActivity">
++
++    <androidx.fragment.app.FragmentContainerView
++        android:id="@+id/fragmentContainerView"
++        android:name="androidx.navigation.fragment.NavHostFragment"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++        android:layout_marginStart="1dp"
++        android:layout_marginTop="1dp"
++        android:layout_marginEnd="1dp"
++        android:layout_marginBottom="1dp"
++        app:defaultNavHost="true"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:navGraph="@navigation/nav_graph" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1675247054291)
++++ b/.idea/misc.xml	(date 1675247054291)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/build/classes" />
++  </component>
++  <component name="ProjectType">
++    <option name="id" value="Android" />
++  </component>
++</project>
+\ No newline at end of file
+Index: gradlew
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradlew b/gradlew
+new file mode 100644
+--- /dev/null	(date 1675247030955)
++++ b/gradlew	(date 1675247030955)
+@@ -0,0 +1,185 @@
++#!/usr/bin/env sh
++
++#
++# Copyright 2015 the original author or authors.
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      https://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++##############################################################################
++##
++##  Gradle start up script for UN*X
++##
++##############################################################################
++
++# Attempt to set APP_HOME
++# Resolve links: $0 may be a link
++PRG="$0"
++# Need this for relative symlinks.
++while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++        PRG="$link"
++    else
++        PRG=`dirname "$PRG"`"/$link"
++    fi
++done
++SAVED="`pwd`"
++cd "`dirname \"$PRG\"`/" >/dev/null
++APP_HOME="`pwd -P`"
++cd "$SAVED" >/dev/null
++
++APP_NAME="Gradle"
++APP_BASE_NAME=`basename "$0"`
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD="maximum"
++
++warn () {
++    echo "$*"
++}
++
++die () {
++    echo
++    echo "$*"
++    echo
++    exit 1
++}
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++nonstop=false
++case "`uname`" in
++  CYGWIN* )
++    cygwin=true
++    ;;
++  Darwin* )
++    darwin=true
++    ;;
++  MINGW* )
++    msys=true
++    ;;
++  NONSTOP* )
++    nonstop=true
++    ;;
++esac
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++        JAVACMD="$JAVA_HOME/bin/java"
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD="java"
++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++fi
++
++# Increase the maximum file descriptors if we can.
++if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
++    MAX_FD_LIMIT=`ulimit -H -n`
++    if [ $? -eq 0 ] ; then
++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
++            MAX_FD="$MAX_FD_LIMIT"
++        fi
++        ulimit -n $MAX_FD
++        if [ $? -ne 0 ] ; then
++            warn "Could not set maximum file descriptor limit: $MAX_FD"
++        fi
++    else
++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
++    fi
++fi
++
++# For Darwin, add options to specify how the application appears in the dock
++if $darwin; then
++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
++fi
++
++# For Cygwin or MSYS, switch paths to Windows format before running java
++if [ "$cygwin" = "true" -o "$msys" = "true" ] ; then
++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
++
++    JAVACMD=`cygpath --unix "$JAVACMD"`
++
++    # We build the pattern for arguments to be converted via cygpath
++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
++    SEP=""
++    for dir in $ROOTDIRSRAW ; do
++        ROOTDIRS="$ROOTDIRS$SEP$dir"
++        SEP="|"
++    done
++    OURCYGPATTERN="(^($ROOTDIRS))"
++    # Add a user-defined pattern to the cygpath arguments
++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
++    fi
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    i=0
++    for arg in "$@" ; do
++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
++
++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
++        else
++            eval `echo args$i`="\"$arg\""
++        fi
++        i=`expr $i + 1`
++    done
++    case $i in
++        0) set -- ;;
++        1) set -- "$args0" ;;
++        2) set -- "$args0" "$args1" ;;
++        3) set -- "$args0" "$args1" "$args2" ;;
++        4) set -- "$args0" "$args1" "$args2" "$args3" ;;
++        5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
++        6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
++        7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
++        8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
++        9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
++    esac
++fi
++
++# Escape application args
++save () {
++    for i do printf %s\\n "$i" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/" ; done
++    echo " "
++}
++APP_ARGS=`save "$@"`
++
++# Collect all arguments for the java command, following the shell quoting and substitution rules
++eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS "\"-Dorg.gradle.appname=$APP_BASE_NAME\"" -classpath "\"$CLASSPATH\"" org.gradle.wrapper.GradleWrapperMain "$APP_ARGS"
++
++exec "$JAVACMD" "$@"
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+new file mode 100644
+--- /dev/null	(date 1675247033178)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1675247033178)
+@@ -0,0 +1,6 @@
++#Wed Feb 01 13:23:53 TRT 2023
++distributionBase=GRADLE_USER_HOME
++distributionUrl=https\://services.gradle.org/distributions/gradle-7.4-bin.zip
++distributionPath=wrapper/dists
++zipStorePath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1675247039143)
++++ b/.idea/.gitignore	(date 1675247039143)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: gradlew.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/gradlew.bat b/gradlew.bat
+new file mode 100644
+--- /dev/null	(date 1675247030961)
++++ b/gradlew.bat	(date 1675247030961)
+@@ -0,0 +1,89 @@
++@rem
++@rem Copyright 2015 the original author or authors.
++@rem
++@rem Licensed under the Apache License, Version 2.0 (the "License");
++@rem you may not use this file except in compliance with the License.
++@rem You may obtain a copy of the License at
++@rem
++@rem      https://www.apache.org/licenses/LICENSE-2.0
++@rem
++@rem Unless required by applicable law or agreed to in writing, software
++@rem distributed under the License is distributed on an "AS IS" BASIS,
++@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++@rem See the License for the specific language governing permissions and
++@rem limitations under the License.
++@rem
++
++@if "%DEBUG%" == "" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++set DIRNAME=%~dp0
++if "%DIRNAME%" == "" set DIRNAME=.
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Resolve any "." and ".." in APP_HOME to make it shorter.
++for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if "%ERRORLEVEL%" == "0" goto execute
++
++echo.
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto execute
++
++echo.
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*
++
++:end
++@rem End local scope for the variables with windows NT shell
++if "%ERRORLEVEL%"=="0" goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
++exit /b 1
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+new file mode 100644
+--- /dev/null	(date 1675254421655)
++++ b/.idea/gradle.xml	(date 1675254421655)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="testRunner" value="GRADLE" />
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1675507936736)
++++ b/.idea/vcs.xml	(date 1675507936736)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1675247054299)
++++ b/.idea/compiler.xml	(date 1675247054299)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="11" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml b/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+new file mode 100644
+--- /dev/null	(date 1675247032024)
++++ b/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	(date 1675247032024)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@drawable/ic_launcher_background" />
++    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_launcher_background.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_launcher_background.xml b/app/src/main/res/drawable/ic_launcher_background.xml
+new file mode 100644
+--- /dev/null	(date 1675247032209)
++++ b/app/src/main/res/drawable/ic_launcher_background.xml	(date 1675247032209)
+@@ -0,0 +1,170 @@
++<?xml version="1.0" encoding="utf-8"?>
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="108dp"
++    android:height="108dp"
++    android:viewportWidth="108"
++    android:viewportHeight="108">
++    <path
++        android:fillColor="#3DDC84"
++        android:pathData="M0,0h108v108h-108z" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M9,0L9,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,0L19,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M29,0L29,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M39,0L39,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M49,0L49,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M59,0L59,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M69,0L69,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M79,0L79,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M89,0L89,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M99,0L99,108"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,9L108,9"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,19L108,19"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,29L108,29"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,39L108,39"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,49L108,49"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,59L108,59"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,69L108,69"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,79L108,79"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,89L108,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M0,99L108,99"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,29L89,29"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,39L89,39"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,49L89,49"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,59L89,59"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,69L89,69"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M19,79L89,79"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M29,19L29,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M39,19L39,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M49,19L49,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M59,19L59,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M69,19L69,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++    <path
++        android:fillColor="#00000000"
++        android:pathData="M79,19L79,89"
++        android:strokeWidth="0.8"
++        android:strokeColor="#33FFFFFF" />
++</vector>
+Index: app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml b/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+new file mode 100644
+--- /dev/null	(date 1675247032231)
++++ b/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	(date 1675247032231)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@drawable/ic_launcher_background" />
++    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++</adaptive-icon>
+\ No newline at end of file
+Index: app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable-v24/ic_launcher_foreground.xml b/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+new file mode 100644
+--- /dev/null	(date 1675247032223)
++++ b/app/src/main/res/drawable-v24/ic_launcher_foreground.xml	(date 1675247032223)
+@@ -0,0 +1,30 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:aapt="http://schemas.android.com/aapt"
++    android:width="108dp"
++    android:height="108dp"
++    android:viewportWidth="108"
++    android:viewportHeight="108">
++    <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
++        <aapt:attr name="android:fillColor">
++            <gradient
++                android:endX="85.84757"
++                android:endY="92.4963"
++                android:startX="42.9492"
++                android:startY="49.59793"
++                android:type="linear">
++                <item
++                    android:color="#44000000"
++                    android:offset="0.0" />
++                <item
++                    android:color="#00000000"
++                    android:offset="1.0" />
++            </gradient>
++        </aapt:attr>
++    </path>
++    <path
++        android:fillColor="#FFFFFF"
++        android:fillType="nonZero"
++        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
++        android:strokeWidth="1"
++        android:strokeColor="#00000000" />
++</vector>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+new file mode 100644
+--- /dev/null	(date 1675252632498)
++++ b/app/src/main/res/values/strings.xml	(date 1675252632498)
+@@ -0,0 +1,5 @@
++<resources>
++    <string name="app_name">SayiTahmin</string>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+new file mode 100644
+--- /dev/null	(date 1675247032311)
++++ b/app/src/main/res/values/colors.xml	(date 1675247032311)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="purple_200">#FFBB86FC</color>
++    <color name="purple_500">#FF6200EE</color>
++    <color name="purple_700">#FF3700B3</color>
++    <color name="teal_200">#FF03DAC5</color>
++    <color name="teal_700">#FF018786</color>
++    <color name="black">#FF000000</color>
++    <color name="white">#FFFFFFFF</color>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/themes.xml b/app/src/main/res/values/themes.xml
+new file mode 100644
+--- /dev/null	(date 1675247641728)
++++ b/app/src/main/res/values/themes.xml	(date 1675247641728)
+@@ -0,0 +1,18 @@
++<resources xmlns:tools="http://schemas.android.com/tools">
++    <!-- Base application theme. -->
++    <style name="Theme.SayiTahmin" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
++        <!-- Primary brand color. -->
++        <item name="colorPrimary">@color/purple_500</item>
++        <item name="colorPrimaryVariant">@color/purple_700</item>
++        <item name="colorOnPrimary">@color/white</item>
++        <!-- Secondary brand color. -->
++        <item name="colorSecondary">@color/teal_200</item>
++        <item name="colorSecondaryVariant">@color/teal_700</item>
++        <item name="colorOnSecondary">@color/black</item>
++        <!-- Status bar color. -->
++        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
++        <!-- Customize your theme here. -->
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++    </style>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/values-night/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values-night/themes.xml b/app/src/main/res/values-night/themes.xml
+new file mode 100644
+--- /dev/null	(date 1675247032335)
++++ b/app/src/main/res/values-night/themes.xml	(date 1675247032335)
+@@ -0,0 +1,16 @@
++<resources xmlns:tools="http://schemas.android.com/tools">
++    <!-- Base application theme. -->
++    <style name="Theme.SayiTahmin" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
++        <!-- Primary brand color. -->
++        <item name="colorPrimary">@color/purple_200</item>
++        <item name="colorPrimaryVariant">@color/purple_700</item>
++        <item name="colorOnPrimary">@color/black</item>
++        <!-- Secondary brand color. -->
++        <item name="colorSecondary">@color/teal_200</item>
++        <item name="colorSecondaryVariant">@color/teal_200</item>
++        <item name="colorOnSecondary">@color/black</item>
++        <!-- Status bar color. -->
++        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
++        <!-- Customize your theme here. -->
++    </style>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/xml/backup_rules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/xml/backup_rules.xml b/app/src/main/res/xml/backup_rules.xml
+new file mode 100644
+--- /dev/null	(date 1675247032343)
++++ b/app/src/main/res/xml/backup_rules.xml	(date 1675247032343)
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="utf-8"?><!--
++   Sample backup rules file; uncomment and customize as necessary.
++   See https://developer.android.com/guide/topics/data/autobackup
++   for details.
++   Note: This file is ignored for devices older that API 31
++   See https://developer.android.com/about/versions/12/backup-restore
++-->
++<full-backup-content>
++    <!--
++   <include domain="sharedpref" path="."/>
++   <exclude domain="sharedpref" path="device.xml"/>
++-->
++</full-backup-content>
+\ No newline at end of file
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1675247030906)
++++ b/.gitignore	(date 1675247030906)
+@@ -0,0 +1,15 @@
++*.iml
++.gradle
++/local.properties
++/.idea/caches
++/.idea/libraries
++/.idea/modules.xml
++/.idea/workspace.xml
++/.idea/navEditor.xml
++/.idea/assetWizardSettings.xml
++.DS_Store
++/build
++/captures
++.externalNativeBuild
++.cxx
++local.properties
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+new file mode 100644
+--- /dev/null	(date 1675254328162)
++++ b/build.gradle	(date 1675254328162)
+@@ -0,0 +1,18 @@
++buildscript {
++    repositories {
++        google()
++        mavenCentral()
++    }
++
++    dependencies {
++        classpath "com.android.tools.build:gradle:7.3.1"
++        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin"
++        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
++        classpath 'com.google.gms:google-services:4.3.15'
++    }
++}// Top-level build file where you can add configuration options common to all sub-projects/modules.
++plugins {
++    id 'com.android.application' version '7.3.1' apply false
++    id 'com.android.library' version '7.3.1' apply false
++    id 'org.jetbrains.kotlin.android' version '1.7.20' apply false
++}
+\ No newline at end of file

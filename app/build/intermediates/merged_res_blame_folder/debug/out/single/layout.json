@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-mergeDebugResources-44:\\layout\\fragment_giris.xml",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\fragment_giris.xml"
+    },
+    {
+        "merged": "com.ayberk.sayitahmin.app-mergeDebugResources-44:/layout/fragment_tahmin.xml",
+        "source": "com.ayberk.sayitahmin.app-main-47:/layout/fragment_tahmin.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-mergeDebugResources-44:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-mergeDebugResources-44:\\layout\\fragment_tahmin.xml",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\fragment_tahmin.xml"
+    },
+    {
+        "merged": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-mergeDebugResources-44:\\layout\\fragment_sonuc.xml",
+        "source": "C:\\Users\\Ayberk\\.gradle\\daemon\\7.4\\com.ayberk.sayitahmin.app-main-47:\\layout\\fragment_sonuc.xml"
+    }
+]
